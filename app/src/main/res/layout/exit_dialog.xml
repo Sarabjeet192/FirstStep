@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_300sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:layout_gravity="center">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/dialogIcon"
+        android:layout_width="@dimen/_44sdp"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_gravity="center"
+        android:elevation="@dimen/_6sdp"
+        android:src="@drawable/app_icon"
+        app:civ_border_color="@color/lightGray"
+        app:civ_border_width="@dimen/_2sdp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-32dp"
+        app:cardCornerRadius="@dimen/_16sdp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_18sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:paddingHorizontal="@dimen/_18sdp">
+
+            <TextView
+                android:id="@+id/dialogTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:text="First Step"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/appColor"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dialogDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/black"
+                android:text="Are you sure to exit?" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/edCancel"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/lightGray"
+                    app:cardUseCompatPadding="true"
+                    app:cardElevation="@dimen/_2sdp"
+                    app:cardCornerRadius="@dimen/_12sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingVertical="@dimen/_6sdp"
+                        android:paddingHorizontal="@dimen/_16sdp"
+                        android:text="Cancel"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/edExit"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/appColor"
+                    app:cardUseCompatPadding="true"
+                    app:cardElevation="@dimen/_2sdp"
+                    app:cardCornerRadius="@dimen/_12sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingVertical="@dimen/_6sdp"
+                        android:paddingHorizontal="@dimen/_16sdp"
+                        android:text="Exit"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

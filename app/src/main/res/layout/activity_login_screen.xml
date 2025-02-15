@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/_12sdp"
+    tools:context=".ui.LoginScreen">
+
+    <ImageView
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:src="@drawable/app_icon"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_note"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:gravity="center"
+        android:textSize="@dimen/_12sdp"
+        android:padding="@dimen/_12sdp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/lsEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:padding="@dimen/_12sdp"
+        android:background="@drawable/edit_text_bg"
+        android:textSize="@dimen/_12sdp"
+        android:hint="Enter email ID"
+        android:inputType="textEmailAddress" />
+
+
+    <EditText
+        android:id="@+id/lsPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:padding="@dimen/_12sdp"
+        android:background="@drawable/edit_text_bg"
+        android:textSize="@dimen/_12sdp"
+        android:hint="Enter password"
+        android:inputType="textPassword" />
+
+
+    <Button
+        android:id="@+id/lsSubmit"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:text="Submit"
+        android:padding="@dimen/_12sdp"/>
+
+
+
+</LinearLayout>
