@@ -38,7 +38,7 @@ class LoginScreen : AppCompatActivity(), OnClickListener {
     override fun onClick(view: View?) {
         when(view?.id){
             R.id.lsSubmit ->{
-                startActivity(Intent(this, HomeScreen::class.java))
+                startActivity(Intent(this, Dashboard::class.java))
                // showExitDialog()
 //                if(isValidate()){
 //                    Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
