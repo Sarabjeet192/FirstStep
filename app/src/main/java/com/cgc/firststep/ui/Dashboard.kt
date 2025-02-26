@@ -1,10 +1,7 @@
 package com.cgc.firststep.ui
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.cgc.firststep.R
 import com.cgc.firststep.databinding.ActivityDashboardBinding
