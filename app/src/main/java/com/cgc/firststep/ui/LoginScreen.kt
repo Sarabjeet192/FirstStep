@@ -14,6 +14,8 @@ import androidx.cardview.widget.CardView
 import com.cgc.firststep.HomeScreen
 import com.cgc.firststep.R
 import com.cgc.firststep.databinding.ActivityLoginScreenBinding
+import com.cgc.firststep.utils.Constant
+import com.cgc.firststep.utils.MyAppPreference
 
 class LoginScreen : AppCompatActivity(), OnClickListener {
 
@@ -38,6 +40,8 @@ class LoginScreen : AppCompatActivity(), OnClickListener {
     override fun onClick(view: View?) {
         when(view?.id){
             R.id.lsSubmit ->{
+                MyAppPreference.putBoolPreference(this@LoginScreen, true, Constant.IS_LOGIN)
+
                 startActivity(Intent(this, Dashboard::class.java))
                // showExitDialog()
 //                if(isValidate()){

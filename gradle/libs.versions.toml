@@ -13,9 +13,12 @@ sdpAndroid = "1.1.1"
 sspAndroid = "1.1.1"
 circleimageview = "3.1.0"
 glide = "4.13.1"
+roomKtx = "2.6.1"
+roomCompiler = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -27,8 +30,11 @@ sdp-android = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid
 ssp-android = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
 

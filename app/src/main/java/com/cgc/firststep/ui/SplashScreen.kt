@@ -6,6 +6,8 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.cgc.firststep.databinding.ActivitySplashScreenBinding
+import com.cgc.firststep.utils.Constant
+import com.cgc.firststep.utils.MyAppPreference
 
 class SplashScreen : AppCompatActivity() {
 
@@ -18,7 +20,11 @@ class SplashScreen : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            startActivity(Intent(this, LoginScreen::class.java))
+            if(MyAppPreference.getBoolPreference(this@SplashScreen, Constant.IS_LOGIN)){
+                startActivity(Intent(this, Dashboard::class.java))
+            }else {
+                startActivity(Intent(this, LoginScreen::class.java))
+            }
             finish()
 
         }, 2000)

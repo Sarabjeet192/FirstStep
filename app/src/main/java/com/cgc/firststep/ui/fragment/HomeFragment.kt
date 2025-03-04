@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupViewPager() {
-        adapter = BannerAdapter(bannerImages)
+        adapter = BannerAdapter()
         binding.viewPagerBanner.adapter = adapter
         binding.viewPagerBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
     }
 
 
-    inner class BannerAdapter(private val banners: List<Int>) : RecyclerView.Adapter<BannerAdapter.BannerViewHolder>() {
+    inner class BannerAdapter() : RecyclerView.Adapter<BannerAdapter.BannerViewHolder>() {
 
         inner class BannerViewHolder(private val binding: ItemBannerBinding) : RecyclerView.ViewHolder(binding.root) {
             fun bind(imageResId: Int) {
@@ -116,10 +116,10 @@ class HomeFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: BannerViewHolder, position: Int) {
-            holder.bind(banners[position])
+            holder.bind(bannerImages[position])
             holder.setPos("Banner ${(position+1)}")
         }
 
-        override fun getItemCount(): Int = banners.size
+        override fun getItemCount(): Int = bannerImages.size
     }
 }

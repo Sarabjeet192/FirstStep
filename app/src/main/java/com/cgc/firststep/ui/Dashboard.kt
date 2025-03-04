@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.cgc.firststep.R
 import com.cgc.firststep.databinding.ActivityDashboardBinding
 import com.cgc.firststep.ui.fragment.HomeFragment
-import com.cgc.firststep.ui.fragment.ProfileFragment
+import com.cgc.firststep.ui.fragment.ProductFragment
 import com.cgc.firststep.ui.fragment.SearchFragment
 
 class Dashboard : AppCompatActivity() {
@@ -18,6 +18,8 @@ class Dashboard : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         // Set default fragment
         loadFragment(HomeFragment())
 
@@ -26,7 +28,7 @@ class Dashboard : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> loadFragment(HomeFragment())
                 R.id.nav_search -> loadFragment(SearchFragment())
-                R.id.nav_profile -> loadFragment(ProfileFragment())
+                R.id.nav_profile -> loadFragment(ProductFragment())
             }
             true
         }
