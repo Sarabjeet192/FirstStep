@@ -4,7 +4,8 @@
     android:orientation="horizontal"
     android:gravity="center"
     android:padding="@dimen/_12sdp"
-    android:background="@android:color/white">
+    android:layout_margin="@dimen/_8sdp"
+    android:background="@drawable/edit_text_bg">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -46,11 +47,26 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/tvDelete"
-        android:layout_width="@dimen/_24sdp"
-        android:layout_height="@dimen/_24sdp"
-        android:src="@drawable/delete"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/tvEdit"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/edit"/>
+
+        <ImageView
+            android:id="@+id/tvDelete"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:src="@drawable/delete"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

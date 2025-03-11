@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/_24sdp"
+    tools:context=".ui.PostApiExample">
+
+    <ImageView
+        android:id="@+id/pieImage"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginBottom="@dimen/_24sdp"/>
+
+
+    <Button
+        android:id="@+id/pieBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_12sdp"
+        android:text="hit post Api"/>
+
+    <ImageView
+        android:id="@+id/pieUploadedImage"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_24sdp"/>
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.cgc.firststep.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ class AddProduct : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddProductBinding
     private lateinit var database: AppDatabase
+    private var pID = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +22,25 @@ class AddProduct : AppCompatActivity() {
         setContentView(binding.root)
 
         database = AppDatabase.getDatabase(this)
+
+        if(intent.getIntExtra("type", 0) == 1){
+          //  val mProduct = intent.getSerializableExtra("product") as? MyProduct
+
+            val mProduct: MyProduct? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                intent.getParcelableExtra("product", MyProduct::class.java)
+            } else {
+                intent.getParcelableExtra("product")
+            }
+
+            if (mProduct != null) {
+                pID = mProduct.id
+                binding.etName.setText(mProduct.name)
+                binding.etCategory.setText(mProduct.category)
+                binding.etPrice.setText(mProduct.price.toString())
+                binding.etStock.setText(mProduct.stock.toString())
+            }
+        }
+
 
         binding.btnSave.setOnClickListener {
             val name = binding.etName.text.toString()
@@ -30,11 +51,17 @@ class AddProduct : AppCompatActivity() {
             if (name.isNotEmpty() && category.isNotEmpty() && price != null && stock != null) {
                 val product = MyProduct(name = name, category = category, price = price, stock = stock)
 
-                lifecycleScope.launch {
-
-                    database.productDao().insertProduct(product)
-                    Toast.makeText(this@AddProduct, "Product Saved!", Toast.LENGTH_SHORT).show()
-                    finish()
+                lifecycleScope.launch{
+                    if(pID == 0) {
+                        database.productDao().insertProduct(product)
+                        Toast.makeText(this@AddProduct, "Product Saved!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }else{
+                        product.id = pID
+                        database.productDao().updateProduct(product)
+                        Toast.makeText(this@AddProduct, "Product Updated!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
 
                 }
             } else {

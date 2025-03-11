@@ -35,6 +35,7 @@ class ProductFragment : Fragment() {
 
         database = AppDatabase.getDatabase(requireContext())  // Initialize database
 
+
         adapter = ProductAdapter()
         binding.fpRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.fpRecyclerView.adapter = adapter
@@ -42,7 +43,7 @@ class ProductFragment : Fragment() {
         loadProducts()
 
         binding.fpAddProduct.setOnClickListener {
-            startActivity(Intent(requireContext(), AddProduct::class.java))
+            startActivity(Intent(requireContext(), AddProduct::class.java).putExtra("type", 0))
         }
     }
 
@@ -85,9 +86,16 @@ class ProductFragment : Fragment() {
                 binding.tvDelete.setOnClickListener {
                     lifecycleScope.launch {
 
-                        database.productDao().deleteProductById(product.id)
+                        database.productDao().deleteProduct(product)
+                     //   database.productDao().deleteProductById(product.id)
                        // loadProducts()  // Refresh the list after deletion
                     }
+                }
+
+                binding.tvEdit.setOnClickListener {
+                    startActivity(Intent(requireContext(), AddProduct::class.java)
+                        .putExtra("type", 1)
+                        .putExtra("product", product))
                 }
             }
         }

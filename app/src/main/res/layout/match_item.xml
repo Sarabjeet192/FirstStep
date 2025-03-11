@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:padding="@dimen/_12sdp"
+    android:layout_margin="@dimen/_8sdp"
+    android:background="@drawable/edit_text_bg">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/miName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/miHomeTeam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_11sdp"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/miAwayTeam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_11sdp"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <TextView
+            android:id="@+id/miVanue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_11sdp"
+            android:textColor="@android:color/holo_blue_dark" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
