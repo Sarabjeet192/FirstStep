@@ -1,5 +1,6 @@
 package com.cgc.firststep.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,6 +15,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.cgc.firststep.R
 import com.cgc.firststep.databinding.FragmentHomeBinding
 import com.cgc.firststep.databinding.ItemBannerBinding
+import com.cgc.firststep.ui.LoginScreen
+import com.cgc.firststep.utils.MyAppPreference
 
 class HomeFragment : Fragment() {
 
@@ -57,6 +60,12 @@ class HomeFragment : Fragment() {
             }
         })
         setupDotsIndicator()
+
+        binding.fhLogout.setOnClickListener {
+            MyAppPreference.clearUserData(requireContext())
+            requireActivity().finish()
+            startActivity(Intent(requireContext(), LoginScreen::class.java))
+        }
     }
 
     private fun setupDotsIndicator() {

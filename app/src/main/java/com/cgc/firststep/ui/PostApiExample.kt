@@ -1,18 +1,25 @@
 package com.cgc.firststep.ui
 
+import android.Manifest
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -43,9 +50,14 @@ class PostApiExample : AppCompatActivity() {
 
     private lateinit var binding: ActivityPostApiExampleBinding
     private lateinit var imagePickerLauncher: ActivityResultLauncher<String>
+    private lateinit var cameraLauncher: ActivityResultLauncher<Uri>
     private lateinit var cropActivityLauncher: ActivityResultLauncher<Intent>
 
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+
+
     private var mImage: File? = null
+    private var imageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +66,26 @@ class PostApiExample : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        // Handle the result of permission request
+        requestPermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+                if (isGranted) {
+                    Log.d("Notification", "Notification permission granted")
+                } else {
+                    Log.d("Notification", "Notification permission denied")
+                }
+            }
+
+        requestNotificationPermission()
+
+
         binding.pieBtn.setOnClickListener {
+
+           // throw RuntimeException("Test Crash")
+
             // hitPostApi()
-            imagePickerLauncher.launch("image/*")
+           // imagePickerLauncher.launch("image/*")
+           // showImagePickerDialog()
 
         }
 
@@ -66,6 +95,14 @@ class PostApiExample : AppCompatActivity() {
                     startCrop(it)
                 }
             }
+
+        cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            if (success) {
+                imageUri?.let { uri ->
+                    startCrop(uri) // Start cropping or use the image
+                }
+            }
+        }
 
 
         cropActivityLauncher =
@@ -77,12 +114,62 @@ class PostApiExample : AppCompatActivity() {
 
                         mImage = getFileFromUri(this@PostApiExample, it)
 
+                        // Get File Name
+                        val fileName = mImage?.name
+
+                        // Get File Size in MB
+                        val fileSizeInMB =
+                            mImage?.length()?.div((1024.0 * 1024.0)) // Convert bytes to MB
+
+                         // Get File Extension
+                        val fileExtension = fileName?.substringAfterLast(".", "Unknown") // Extract extension
+
+                        // Update UI
+                        binding.pieInfo.text = "Name: $fileName \nSize: %.2f MB \nExtension: $fileExtension".format(fileSizeInMB)
+
                         uploadFileApi()
 
                     }
                 }
             }
 
+    }
+
+    private fun openCamera() {
+        val contentValues = ContentValues().apply {
+            put(MediaStore.Images.Media.TITLE, "New Image")
+            put(MediaStore.Images.Media.DESCRIPTION, "From Camera")
+        }
+
+        imageUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+
+        imageUri?.let { uri ->
+            cameraLauncher.launch(uri) // Open the camera
+        }
+    }
+
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            } else {
+                Log.d("Notification", "Permission already granted")
+            }
+        }
+    }
+
+    private fun showImagePickerDialog() {
+        val options = arrayOf("Camera", "Gallery")
+        AlertDialog.Builder(this)
+            .setTitle("Select Image From")
+            .setItems(options) { _, index ->
+                when (index) {
+                    0 -> openCamera() // Open Camera
+                    1 -> imagePickerLauncher.launch("image/*") // Open Gallery
+                }
+            }
+            .show()
     }
 
     private fun uploadFileApi() {
@@ -132,7 +219,7 @@ class PostApiExample : AppCompatActivity() {
         val fileName = System.currentTimeMillis().toString()
         val destinationUri = Uri.fromFile(File(cacheDir, "${fileName}.jpg"))
         val options = UCrop.Options().apply {
-            setCompressionQuality(80)
+            setCompressionQuality(50)
             setHideBottomControls(true)
             setFreeStyleCropEnabled(false)
         }

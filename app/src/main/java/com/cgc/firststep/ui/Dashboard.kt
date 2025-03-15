@@ -19,7 +19,6 @@ class Dashboard : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
         // Set default fragment
         loadFragment(HomeFragment())
 

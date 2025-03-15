@@ -3,6 +3,7 @@ package com.cgc.firststep.ui
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
@@ -34,15 +35,23 @@ class LoginScreen : AppCompatActivity(), OnClickListener {
     private fun initView() {
         binding.lsSubmit.setOnClickListener(this)
 
+        binding.lsPassword.typeface = Typeface.MONOSPACE
+
     }
     
 
     override fun onClick(view: View?) {
         when(view?.id){
             R.id.lsSubmit ->{
-                MyAppPreference.putBoolPreference(this@LoginScreen, true, Constant.IS_LOGIN)
 
-                startActivity(Intent(this, Dashboard::class.java))
+                if(binding.lsEmail.text.toString().trim() != "admin@gmail.com"){
+                    Toast.makeText(this, "Enter valid email", Toast.LENGTH_SHORT).show()
+                }else if(binding.lsPassword.text.trim() == "123456"){
+                    Toast.makeText(this, "Enter valid password", Toast.LENGTH_SHORT).show()
+                }else {
+                    MyAppPreference.putBoolPreference(this@LoginScreen, true, Constant.IS_LOGIN)
+                    startActivity(Intent(this, Dashboard::class.java))
+                }
                // showExitDialog()
 //                if(isValidate()){
 //                    Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()

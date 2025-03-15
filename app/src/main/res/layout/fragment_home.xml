@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/fhLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/_12sdp"
+        android:text="logout"/>
+
     <!-- ViewPager2 for Banner -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerBanner"
