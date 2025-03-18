@@ -35,6 +35,7 @@ import com.cgc.firststep.model.PostApiModel
 import com.cgc.firststep.model.PostDataModel
 import com.cgc.firststep.network.RemoteCallback
 import com.cgc.firststep.network.WebAPIManager
+import com.google.firebase.storage.FirebaseStorage
 import com.yalantis.ucrop.UCrop
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -45,6 +46,9 @@ import retrofit2.Call
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class PostApiExample : AppCompatActivity() {
 
@@ -54,6 +58,8 @@ class PostApiExample : AppCompatActivity() {
     private lateinit var cropActivityLauncher: ActivityResultLauncher<Intent>
 
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+
+    private val storageRef = FirebaseStorage.getInstance().reference.child("images")
 
 
     private var mImage: File? = null
@@ -85,7 +91,7 @@ class PostApiExample : AppCompatActivity() {
 
             // hitPostApi()
            // imagePickerLauncher.launch("image/*")
-           // showImagePickerDialog()
+          showImagePickerDialog()
 
         }
 
@@ -127,7 +133,8 @@ class PostApiExample : AppCompatActivity() {
                         // Update UI
                         binding.pieInfo.text = "Name: $fileName \nSize: %.2f MB \nExtension: $fileExtension".format(fileSizeInMB)
 
-                        uploadFileApi()
+                       // uploadFileApi()
+                        uploadImage(it)
 
                     }
                 }
@@ -172,6 +179,31 @@ class PostApiExample : AppCompatActivity() {
             .show()
     }
 
+    private fun uploadImage(fileUri: Uri) {
+        val fileName = "IMG_${SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())}.jpg"
+        val fileRef = storageRef.child(fileName)
+
+        val uploadTask = fileRef.putFile(fileUri)
+
+        uploadTask.addOnProgressListener { snapshot ->
+            val progress = (100.0 * snapshot.bytesTransferred / snapshot.totalByteCount).toInt()
+            binding.progressBar.progress = progress
+            binding.progressBar.visibility = View.VISIBLE
+        }
+
+        uploadTask.addOnSuccessListener {
+            fileRef.downloadUrl.addOnSuccessListener { uri ->
+                binding.pieUploadedImage.setImageURI(null)
+                binding.pieUploadedImage.setImageURI(uri)
+                binding.progressBar.visibility = View.GONE
+                Toast.makeText(this, "Upload Successful", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener {
+            binding.progressBar.visibility = View.GONE
+            Toast.makeText(this, "Upload Failed", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun uploadFileApi() {
 
 
@@ -213,7 +245,6 @@ class PostApiExample : AppCompatActivity() {
 
 
     }
-
 
     private fun startCrop(uri: Uri) {
         val fileName = System.currentTimeMillis().toString()

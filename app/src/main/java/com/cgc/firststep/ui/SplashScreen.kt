@@ -25,15 +25,15 @@ class SplashScreen : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-     //       val intent = Intent(this@SplashScreen, PostApiExample::class.java)
-     //       startActivity(intent)
+            val intent = Intent(this@SplashScreen, FirestoreExample::class.java)
+            startActivity(intent)
 
-            if(MyAppPreference.getBoolPreference(this@SplashScreen, Constant.IS_LOGIN)){
-                startActivity(Intent(this, Dashboard::class.java))
-            }else {
-                startActivity(Intent(this, LoginScreen::class.java))
-            }
-            finish()
+//            if(MyAppPreference.getBoolPreference(this@SplashScreen, Constant.IS_LOGIN)){
+//                startActivity(Intent(this, Dashboard::class.java))
+//            }else {
+//                startActivity(Intent(this, LoginScreen::class.java))
+//            }
+//            finish()
 
         }, 3000)
 
