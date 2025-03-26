@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="20dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:text="Login"/>
+
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:text="Don't have an account? Register"
+        android:textColor="@android:color/holo_blue_dark"/>
+
+   <androidx.cardview.widget.CardView
+       android:id="@+id/tvGoogleLogin"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:cardCornerRadius="@dimen/_24sdp"
+       android:layout_margin="@dimen/_12sdp"
+       app:cardUseCompatPadding="true">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:padding="@dimen/_8sdp"
+           android:gravity="center"
+           android:orientation="horizontal">
+
+           <de.hdodenhof.circleimageview.CircleImageView
+               android:layout_width="@dimen/_24sdp"
+               android:layout_height="@dimen/_24sdp"
+               android:src="@drawable/ic_google"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Login With Google"
+               android:textStyle="bold"
+               android:textSize="@dimen/_12sdp"
+               android:layout_marginStart="@dimen/_12sdp"
+               android:textColor="@android:color/black"/>
+
+
+       </LinearLayout>
+
+   </androidx.cardview.widget.CardView>
+
+   <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:cardCornerRadius="@dimen/_24sdp"
+       app:cardUseCompatPadding="true"
+       android:layout_margin="@dimen/_12sdp">
+
+       <com.facebook.login.widget.LoginButton
+           android:id="@+id/btnFacebookLogin"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:paddingVertical="@dimen/_10sdp"
+           android:paddingHorizontal="@dimen/_24sdp"
+           android:layout_gravity="center"
+           android:textSize="@dimen/_12sdp"
+           android:text="Login with Facebook"/>
+
+   </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:id="@+id/btnCheckInternet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:text="Check Internet"/>
+
+
+</LinearLayout>

@@ -13,7 +13,7 @@
 
     <!-- Corner radius -->
     <corners
-        android:radius="12dp"/>
+        android:radius="@dimen/_12sdp"/>
 
     <!-- Padding inside the EditText -->
 

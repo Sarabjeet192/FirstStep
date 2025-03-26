@@ -7,14 +7,15 @@ import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.cgc.firststep.databinding.ActivitySplashScreenBinding
-import com.cgc.firststep.utils.Constant
-import com.cgc.firststep.utils.MyAppPreference
+import com.cgc.firststep.ui.firebase_auth.LoginWithEmailPass
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 
 class SplashScreen : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
     private var fcmToken = ""
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,11 +23,20 @@ class SplashScreen : AppCompatActivity() {
         setContentView(binding.root)
 
         getFirebaseNotificationToken()
+        auth = FirebaseAuth.getInstance()
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            val intent = Intent(this@SplashScreen, FirestoreExample::class.java)
+            val intent = Intent(this@SplashScreen, MapDirectionExample::class.java)
             startActivity(intent)
+
+//
+//            val currentUser = auth.currentUser
+//            if (currentUser != null) {
+//                startActivity(Intent(this, Dashboard::class.java))
+//            }else{
+//                startActivity(Intent(this, LoginWithEmailPass::class.java))
+//            }
 
 //            if(MyAppPreference.getBoolPreference(this@SplashScreen, Constant.IS_LOGIN)){
 //                startActivity(Intent(this, Dashboard::class.java))

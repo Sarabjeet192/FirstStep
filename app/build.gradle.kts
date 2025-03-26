@@ -94,4 +94,17 @@ dependencies {
 
     implementation(libs.firebase.storage.ktx)
 
+
+    implementation(libs.firebase.auth.ktx)
+
+    implementation(libs.play.services.auth)
+
+    implementation(libs.facebook.login)
+
+
+    implementation(libs.places)
+    implementation(libs.play.services.maps)
+    implementation(libs.android.maps.utils)
+
+
 }

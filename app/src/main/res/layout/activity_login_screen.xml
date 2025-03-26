@@ -13,7 +13,14 @@
     <ImageView
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_60sdp"
-        android:src="@drawable/app_icon"/>
+        android:src="@drawable/ic_default_image"
+        app:tint="@color/appColor" />
+
+    <ImageView
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:src="@drawable/banner"/>
 
 
     <TextView
@@ -27,13 +34,91 @@
         android:textColor="@color/black"
         android:textStyle="bold"/>
 
+   <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:cardCornerRadius="@dimen/_12sdp"
+       app:cardElevation="@dimen/_3sdp"
+       android:layout_margin="@dimen/_4sdp">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+
+           <androidx.cardview.widget.CardView
+               android:layout_width="@dimen/_48sdp"
+               android:layout_height="match_parent"
+               android:layout_gravity="center"
+               app:cardBackgroundColor="@color/appColor"
+               app:cardCornerRadius="@dimen/_12sdp">
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@android:color/transparent"
+                   android:fontFamily="@font/aclonica"
+                   android:gravity="center"
+                   android:text="S"
+                   android:textColor="@color/white"
+                   android:textSize="@dimen/_32sdp"
+                   android:textStyle="bold" />
+
+
+<!--               <ImageView-->
+<!--                   android:layout_width="match_parent"-->
+<!--                   android:layout_height="match_parent"-->
+<!--                   android:scaleType="fitXY"-->
+<!--                   android:src="@drawable/banner"/>-->
+
+           </androidx.cardview.widget.CardView>
+
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:paddingVertical="@dimen/_8sdp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:id="@+id/lsName"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:paddingHorizontal="@dimen/_8sdp"
+                   android:drawablePadding="@dimen/_6sdp"
+                   android:background="@android:color/transparent"
+                   android:textSize="@dimen/_12sdp"
+                   android:text="Sarabjeet Singh" />
+
+               <TextView
+                   android:id="@+id/lsPhone"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:paddingHorizontal="@dimen/_8sdp"
+                   android:drawablePadding="@dimen/_6sdp"
+                   android:background="@android:color/transparent"
+                   android:textSize="@dimen/_12sdp"
+                   android:text="906736781456" />
+
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+   </androidx.cardview.widget.CardView>
+
+
+
+
     <EditText
         android:id="@+id/lsEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24sdp"
         android:padding="@dimen/_12sdp"
+        android:drawableEnd="@drawable/ic_email"
         android:background="@drawable/edit_text_bg"
+        android:drawablePadding="@dimen/_6sdp"
         android:textSize="@dimen/_12sdp"
         android:hint="Enter email ID"
         android:inputType="textEmailAddress" />
@@ -45,10 +130,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24sdp"
         android:padding="@dimen/_12sdp"
+        android:drawableEnd="@drawable/ic_eye"
         android:background="@drawable/edit_text_bg"
         android:textSize="@dimen/_12sdp"
         android:hint="Enter password"
         android:inputType="textPassword" />
+
+
 
 
     <Button

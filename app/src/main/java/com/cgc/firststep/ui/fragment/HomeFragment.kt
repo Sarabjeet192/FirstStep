@@ -10,13 +10,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.cgc.firststep.R
 import com.cgc.firststep.databinding.FragmentHomeBinding
 import com.cgc.firststep.databinding.ItemBannerBinding
 import com.cgc.firststep.ui.LoginScreen
+import com.cgc.firststep.ui.firebase_auth.LoginWithEmailPass
 import com.cgc.firststep.utils.MyAppPreference
+import com.facebook.login.LoginManager
+import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
 
@@ -33,6 +41,10 @@ class HomeFragment : Fragment() {
     private val handler = Handler(Looper.getMainLooper())
     private var currentPage = 0
 
+    private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var signInClient: SignInClient
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +56,16 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        auth = FirebaseAuth.getInstance()
+
+        // Configure Google Sign-In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id)) // Ensure this is from google-services.json
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         setupViewPager()
         setupAutoScroll()
@@ -62,9 +84,14 @@ class HomeFragment : Fragment() {
         setupDotsIndicator()
 
         binding.fhLogout.setOnClickListener {
-            MyAppPreference.clearUserData(requireContext())
+            //MyAppPreference.clearUserData(requireContext())
+            auth.signOut()
+            googleSignInClient.signOut()
+
+            LoginManager.getInstance().logOut()
+
             requireActivity().finish()
-            startActivity(Intent(requireContext(), LoginScreen::class.java))
+            startActivity(Intent(requireContext(), LoginWithEmailPass::class.java))
         }
     }
 
