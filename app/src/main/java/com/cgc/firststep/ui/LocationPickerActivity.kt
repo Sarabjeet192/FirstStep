@@ -143,9 +143,15 @@ class LocPickerActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Launch the Autocomplete activity
         autocompleteLauncher.launch(intent)
+
+
     }
 
+
+
     private fun checkGPSEnabled() {
+
+
         val locationRequest = LocationRequest.create().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }

@@ -20,6 +20,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.design_from_figma.FigmaScreen"
+            android:exported="false" />
+        <activity
             android:name=".ui.MapDirectionExample"
             android:exported="false" />
         <activity

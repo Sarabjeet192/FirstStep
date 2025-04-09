@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.cgc.firststep.R
@@ -92,6 +93,13 @@ class HomeFragment : Fragment() {
 
             requireActivity().finish()
             startActivity(Intent(requireContext(), LoginWithEmailPass::class.java))
+        }
+
+        binding.fhSendBroadcast.setOnClickListener {
+            // Sending a local broadcast
+            val intent = Intent("com.cgc.firststep.MY_LOCAL_BROADCAST")
+            intent.putExtra("message", "Broadcast from home")
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
         }
     }
 

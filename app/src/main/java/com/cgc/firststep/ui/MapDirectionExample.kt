@@ -55,6 +55,7 @@ class MapDirectionExample : AppCompatActivity(), OnMapReadyCallback {
         fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
             location?.let {
                 val userLocation = LatLng(it.latitude, it.longitude)
+
                 googleMap.addMarker(MarkerOptions().position(userLocation).title("Your Location"))
                 googleMap.addMarker(MarkerOptions().position(destination).title("Destination"))
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 12f))
